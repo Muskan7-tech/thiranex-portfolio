@@ -1,4 +1,25 @@
 (() => {
+  const root = document.documentElement;
+  const themeButton = document.querySelector('.theme-toggle');
+  const setTheme = theme => {
+    root.dataset.theme = theme;
+    const dark = theme === 'dark';
+    document.querySelectorAll('.theme-toggle').forEach(button => {
+      button.setAttribute('aria-pressed', String(dark));
+      button.setAttribute('aria-label', `Switch to ${dark ? 'light' : 'dark'} mode`);
+      button.querySelector('[aria-hidden="true"]').textContent = dark ? '☀' : '☾';
+    });
+    document.querySelectorAll('meta[name="theme-color"]').forEach(meta => meta.content = dark ? '#0b1020' : '#101b3e');
+  };
+  let savedTheme = null;
+  try { savedTheme = localStorage.getItem('portfolio-theme'); } catch (_) { /* Storage can be unavailable in private browsing. */ }
+  setTheme(savedTheme === 'dark' ? 'dark' : 'light');
+  themeButton?.addEventListener('click', () => {
+    const next = root.dataset.theme === 'dark' ? 'light' : 'dark';
+    setTheme(next);
+    try { localStorage.setItem('portfolio-theme', next); } catch (_) { /* The toggle still works for this page. */ }
+  });
+
   const menuButton = document.querySelector('.menu-toggle');
   const menu = document.querySelector('#primary-menu');
 
@@ -29,6 +50,14 @@
   document.querySelectorAll('[data-year]').forEach(node => {
     node.textContent = String(new Date().getFullYear());
   });
+
+  const backToTop = document.querySelector('.back-to-top');
+  if (backToTop) {
+    const updateBackToTop = () => backToTop.classList.toggle('is-visible', window.scrollY > 450);
+    window.addEventListener('scroll', updateBackToTop, { passive: true });
+    updateBackToTop();
+    backToTop.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+  }
 
   const form = document.querySelector('#contact-form');
   if (!form) return;

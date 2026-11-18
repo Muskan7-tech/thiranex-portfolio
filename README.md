@@ -6,6 +6,8 @@ A responsive, multi-page personal portfolio for Muskan Khanum, an Information Sc
 
 - Five linked pages: Home, About, Skills, Projects and Contact.
 - Responsive layouts and a keyboard-operable mobile navigation menu.
+- Persistent light/dark theme toggle shared across all pages.
+- Scroll-to-top control, responsive grids and reduced-motion support.
 - Accessible contact form with required field and email format validation.
 - Consistent visual identity, project cards, and reduced-motion support.
 - No invented project metrics, awards, deployment links or contact details.
@@ -15,6 +17,7 @@ A responsive, multi-page personal portfolio for Muskan Khanum, an Information Sc
 - HTML5 for semantic page structure and content.
 - CSS3 for layout, responsive styles, focus states and reduced-motion support.
 - Vanilla JavaScript for the mobile menu and frontend form validation.
+- Browser local storage for remembering the selected theme.
 - Google Fonts (DM Sans and Manrope) are requested from Google Fonts; system fonts are fallbacks.
 
 ## Folder structure
@@ -30,9 +33,7 @@ Thiranex-portfolio/
 │   └── style.css
 ├── js/
 │   └── script.js
-├── assets/
-│   ├── images/     (reserved for a supplied profile image)
-│   └── icons/      (reserved for future icon assets)
+├── assets/         (reserved for supplied images, resume and icons)
 └── README.md
 ```
 
@@ -46,13 +47,15 @@ python -m http.server 8000
 
 Then visit `http://localhost:8000`. No build or package installation is needed.
 
-## Test
+## Check the site locally
 
 - Navigate each page from the header and footer.
 - Use Tab and Shift+Tab to inspect keyboard order; activate the skip link, menu and form controls with the keyboard.
 - At a narrow viewport, open and close the navigation menu, including with Escape.
+- Switch themes, refresh, and confirm the selected theme remains active.
+- Scroll down and use the back-to-top control.
 - On Contact, submit an empty form, an invalid email and a complete valid form to check inline messages and status feedback.
-- Inspect at mobile, tablet and desktop widths. External HTML validation and Lighthouse audits were not run as part of this build.
+- Inspect at mobile, tablet and desktop widths. External HTML validation and Lighthouse audits are not included.
 
 ## Accessibility
 
@@ -66,4 +69,5 @@ Every page has a unique title and meta description, UTF-8 encoding, viewport met
 
 - The contact form only validates in the browser. It does not send or store messages; backend or email service integration is required.
 - No personal photograph, public email address or project links were supplied. The profile visual is an illustration placeholder.
+- A resume file and public social profiles were not supplied, so the home page directs resume requests to Contact and no social destinations are fabricated.
 - No external validator or Lighthouse scores are claimed. Google Fonts require network access; fallback fonts remain available.
